@@ -1,0 +1,13 @@
+[Unit]
+Description=Sample server
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/yasinblkbs
+ExecStart=/usr/bin/gunicorn --workers 3 --bind unix:/opt/yasinblkbs/app.sock -m 007 wsgi:app
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
